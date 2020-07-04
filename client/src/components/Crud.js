@@ -3,13 +3,21 @@ import axios from "axios";
 
 export default function Crud() {
   const [name, setName] = useState("");
-  const [api, setApi] = useState([]);
+  // const [api, setApi] = useState([]);
 
-  useEffect(() => {});
+  // useEffect(() => {
+  //   axios.get('').then(Res => console.log(Res.data))
+  // });
 
-  // const onClickData = () => {
-  //   axios.post('http://localhost:5000/api/data', )
-  // };
+  const onClickData = () => {
+    axios
+      .post("http://localhost:5000/api/data", {
+        name,
+      })
+      .then((Res) => {
+        console.log(Res.data.data);
+      });
+  };
   return (
     <div>
       <input
