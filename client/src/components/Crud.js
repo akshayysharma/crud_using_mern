@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Crud() {
   const [name, setName] = useState("");
   const [api, setApi] = useState([]);
 
-  const onClickData = () => {
-    console.log("api data");
-  };
+  useEffect(() => {});
+
+  // const onClickData = () => {
+  //   axios.post('http://localhost:5000/api/data', )
+  // };
   return (
     <div>
       <input
