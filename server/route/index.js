@@ -8,4 +8,8 @@ route.get("/details", (req, res) => {
   });
 });
 
+route.post("/data", (req, res) => {
+  console.log(req.body);
+});
+
 module.exports = route;
