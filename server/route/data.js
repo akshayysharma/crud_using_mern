@@ -36,17 +36,23 @@ route.post("/data", (req, res) => {
 });
 
 route.put("/data/:_id", (req, res) => {
-  console.log(req.params);
-  Data.findByIdAndUpdate({ _id: req.params._id }, req.body).then(() => {
-    Data.findOne({ _id: req.params._id }).then((result) => {
+  console.log(req.params._id);
+  let dataId = req.params._id;
+  if (dataId.charAt(0) === ":") {
+    dataId = dataId.substr(1);
+  }
+  console.log(req.body);
+  Data.findByIdAndUpdate({ _id: dataId }, req.body).then(() => {
+    Data.findOne({ _id: dataId }).then((result) => {
+      console.log(result);
       res.json({ data: result });
     });
   });
 });
 
-route.delete("/data/:id", (req, res) => {
+route.delete("/data/:_id", (req, res) => {
   console.log(req.params);
-  Data.findByIdAndRemove({ _id: req.params.id })
+  Data.findByIdAndRemove({ _id: req.params._id })
     .then((result) => {
       console.log(result);
       res.json({ data: result });
