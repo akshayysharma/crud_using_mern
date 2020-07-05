@@ -5,7 +5,11 @@ const { MONGOURI } = require("./keys/keys");
 const app = express();
 
 // connection to DB
-mongoose.connect(MONGOURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGOURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 mongoose.connection.on("connected", () => console.log("DB connected"));
 mongoose.connection.on("error", (e) => console.log("error", e));
 

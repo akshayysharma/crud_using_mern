@@ -35,4 +35,23 @@ route.post("/data", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+route.put("/data/:_id", (req, res) => {
+  console.log(req.params);
+  Data.findByIdAndUpdate({ _id: req.params._id }, req.body).then(() => {
+    Data.findOne({ _id: req.params._id }).then((result) => {
+      res.json({ data: result });
+    });
+  });
+});
+
+route.delete("/data/:id", (req, res) => {
+  console.log(req.params);
+  Data.findByIdAndRemove({ _id: req.params.id })
+    .then((result) => {
+      console.log(result);
+      res.json({ data: result });
+    })
+    .catch((error) => console.log(error));
+});
+
 module.exports = route;
