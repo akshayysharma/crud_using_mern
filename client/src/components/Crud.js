@@ -3,11 +3,15 @@ import axios from "axios";
 
 export default function Crud() {
   const [name, setName] = useState("");
-  // const [api, setApi] = useState([]);
+  const [api, setApi] = useState([]);
+  const [no, setNo] = useState(0);
 
-  // useEffect(() => {
-  //   axios.get('').then(Res => console.log(Res.data))
-  // });
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/details").then((Res) => {
+      console.log(Res.data.name);
+      setApi(Res.data.name);
+    });
+  }, [no]);
 
   const onClickData = () => {
     axios
@@ -17,7 +21,10 @@ export default function Crud() {
       .then((Res) => {
         console.log(Res.data.data);
       });
+    setNo((number) => number + 1);
   };
+
+  const showData = api.map((item) => <li key={item._id}>{item.name}</li>);
   return (
     <div>
       <input
@@ -26,6 +33,7 @@ export default function Crud() {
         onChange={(e) => setName(e.target.value)}
       />
       <button onClick={() => onClickData()}>Add</button>
+      {showData}
     </div>
   );
 }

@@ -4,10 +4,13 @@ const mongoose = require("mongoose");
 const Data = mongoose.model("Data");
 
 route.get("/details", (req, res) => {
-  res.json({
-    name: "akshay",
-    age: 25,
-  });
+  Data.find()
+    .then((post) => {
+      res.json({
+        name: post,
+      });
+    })
+    .catch((error) => console.log(error));
 });
 
 route.post("/data", (req, res) => {
