@@ -52,7 +52,11 @@ route.put("/data/:_id", (req, res) => {
 
 route.delete("/data/:_id", (req, res) => {
   console.log(req.params);
-  Data.findByIdAndRemove({ _id: req.params._id })
+  let dataId = req.params._id;
+  if (dataId.charAt(0) === ":") {
+    dataId = dataId.substr(1);
+  }
+  Data.findByIdAndRemove({ _id: dataId })
     .then((result) => {
       console.log(result);
       res.json({ data: result });

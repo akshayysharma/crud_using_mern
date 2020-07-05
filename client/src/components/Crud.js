@@ -26,17 +26,27 @@ export default function Crud() {
   };
 
   const updateData = (id) => {
-    console.log(id);
     axios.put(`http://localhost:5000/api/data/:${id}`, { name }).then((Res) => {
       console.log(Res.data.data);
       setNo((number) => number + 1);
     });
   };
 
+  const deleteData = (id) => {
+    console.log(id);
+    axios
+      .delete(`http://localhost:5000/api/data/:${id}`)
+      .then((Res) => {
+        console.log(Res.data);
+        setNo((number) => number - 1);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const showData = api.map((item) => (
     <li key={item._id}>
       {item.name} <button onClick={() => updateData(item._id)}>Update</button>
-      <button>Delete</button>
+      <button onClick={() => deleteData(item._id)}>Delete</button>
     </li>
   ));
   return (
@@ -46,13 +56,7 @@ export default function Crud() {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-
       <button onClick={() => onClickData()}>Add</button>
-      {/* <input
-        type="text"
-        value={update}
-        onChange={(e) => setUpdate(e.target.value)}
-      /> */}
       {showData}
     </div>
   );
