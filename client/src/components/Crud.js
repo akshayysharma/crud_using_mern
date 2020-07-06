@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./crud.css";
 
 export default function Crud() {
   const [name, setName] = useState("");
@@ -44,19 +45,43 @@ export default function Crud() {
   };
 
   const showData = api.map((item) => (
-    <li key={item._id}>
-      {item.name} <button onClick={() => updateData(item._id)}>Update</button>
-      <button onClick={() => deleteData(item._id)}>Delete</button>
+    <li key={item._id} className="order">
+      <span className="data">{item.name}</span>
+      <button
+        className="btn lime  waves-effect waves-light"
+        onClick={() => updateData(item._id)}
+      >
+        Update <i className="material-icons right">update</i>
+      </button>
+      <button
+        className="btn red darken-1 waves-effect waves-light"
+        onClick={() => deleteData(item._id)}
+      >
+        Delete <i className="material-icons right">delete</i>
+      </button>
     </li>
   ));
   return (
-    <div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <button onClick={() => onClickData()}>Add</button>
+    <div className="space">
+      <div className="input">
+        <div className="input-field">
+          <i className="material-icons prefix">mode_edit</i>
+          <input
+            id="last_name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label for="last_name">Name</label>
+        </div>
+        <button
+          className="btn green darken-1 waves-effect waves-light add"
+          onClick={() => onClickData()}
+        >
+          Add
+          <i className="material-icons right">add_box</i>
+        </button>
+      </div>
       {showData}
     </div>
   );

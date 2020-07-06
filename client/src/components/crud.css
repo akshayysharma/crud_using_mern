@@ -1,0 +1,22 @@
+.space {
+  width: 30rem;
+}
+.input {
+  display: flex;
+  justify-content: space-between;
+}
+.order {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.3rem;
+}
+.data {
+  font-size: 1.2rem;
+}
+.input-field {
+  width: 20rem;
+}
+.add {
+  margin-top: 1rem;
+}
